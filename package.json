@@ -1,6 +1,6 @@
 {
     "name": "@ekdennisek/type-safe-db",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Database access with a layer of type safety on top",
     "scripts": {
         "build": "rm -rf lib && tsc",
@@ -12,8 +12,8 @@
     "files": [
         "lib/**/*"
     ],
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "exports": "./lib/index.js",
+    "types": "./lib/index.d.ts",
     "homepage": "https://github.com/ekdennisek/type-safe-db",
     "repository": {
         "type": "git",
