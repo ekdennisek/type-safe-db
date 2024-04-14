@@ -1,2 +1,2 @@
-export * from "./dbPool";
-export * from "./repository";
+export * from "./dbPool.js";
+export * from "./repository.js";

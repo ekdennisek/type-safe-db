@@ -1,5 +1,5 @@
 import { SQLStatement } from "sql-template-strings";
-import { DbPool } from "./dbPool";
+import { DbPool } from "./dbPool.js";
 import { QueryResultRow } from "pg";
 import { z } from "zod";
 
