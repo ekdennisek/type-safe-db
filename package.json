@@ -1,0 +1,32 @@
+{
+    "name": "@ekdennisek/type-safe-db",
+    "version": "1.0.0",
+    "description": "Database access with a layer of type safety on top",
+    "scripts": {
+        "build": "rm -rf lib && tsc",
+        "prepublishOnly": "npm run test && npm run build",
+        "test": "prettier --check \"src/**/*.ts\" && eslint --max-warnings 0 ./src"
+    },
+    "author": "Dennis Ek <dennis@dennisek.se>",
+    "license": "MIT",
+    "main": "./lib",
+    "homepage": "https://github.com/ekdennisek/type-safe-db",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:ekdennisek/type-safe-db.git"
+    },
+    "devDependencies": {
+        "@ekdennisek/code-standard": "^1.1.0",
+        "@types/pg": "^8.11.5",
+        "eslint": "^8.57.0",
+        "prettier": "^3.2.5",
+        "typescript": "^5.4.5"
+    },
+    "dependencies": {
+        "pg": "^8.11.5",
+        "sql-template-strings": "^2.2.2",
+        "zod": "^3.22.4"
+    },
+    "prettier": "@ekdennisek/code-standard/prettier",
+    "type": "module"
+}
