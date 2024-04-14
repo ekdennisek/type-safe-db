@@ -1,6 +1,6 @@
 {
     "name": "@ekdennisek/type-safe-db",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Database access with a layer of type safety on top",
     "scripts": {
         "build": "rm -rf lib && tsc",
