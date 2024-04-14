@@ -1,6 +1,6 @@
 import { SQLStatement } from "sql-template-strings";
-import { DbPool } from "./dbPool";
-import { QueryResultRow } from "pg";
+import { DbPool } from "./dbPool.js";
+import pg from "pg";
 import { z } from "zod";
 
 export class Repository {
@@ -12,14 +12,14 @@ export class Repository {
         });
     }
 
-    protected async any<T extends QueryResultRow>(
+    protected async any<T extends pg.QueryResultRow>(
         statement: SQLStatement,
         schema: z.ZodType<T>,
     ): Promise<T[]> {
         return this.query<T>(statement, schema);
     }
 
-    protected async one<T extends QueryResultRow>(
+    protected async one<T extends pg.QueryResultRow>(
         statement: SQLStatement,
         schema: z.ZodType<T>,
     ): Promise<T> {
@@ -30,7 +30,7 @@ export class Repository {
         return rows[0];
     }
 
-    protected async oneOrNone<T extends QueryResultRow>(
+    protected async oneOrNone<T extends pg.QueryResultRow>(
         statement: SQLStatement,
         schema: z.ZodType<T>,
     ): Promise<T | undefined> {
@@ -47,7 +47,7 @@ export class Repository {
         return this.query(statement);
     }
 
-    protected async query<T extends QueryResultRow>(
+    protected async query<T extends pg.QueryResultRow>(
         statement: SQLStatement,
         schema?: z.ZodType<T>,
     ): Promise<T[]> {

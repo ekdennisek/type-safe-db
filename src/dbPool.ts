@@ -1,32 +1,25 @@
 import { AsyncLocalStorage } from "async_hooks";
-import {
-    Pool,
-    PoolClient,
-    PoolConfig,
-    QueryResult,
-    QueryResultRow,
-    types,
-} from "pg";
+import pg from "pg";
 import { SQLStatement } from "sql-template-strings";
 
 type SqlLike = SQLStatement | string;
 
 export class DbPool {
-    private readonly asyncLocalStorage: AsyncLocalStorage<PoolClient>;
-    private readonly pool: Pool;
+    private readonly asyncLocalStorage: AsyncLocalStorage<pg.PoolClient>;
+    private readonly pool: pg.Pool;
 
-    public constructor(config?: PoolConfig) {
+    public constructor(config?: pg.PoolConfig) {
         this.asyncLocalStorage = new AsyncLocalStorage();
-        types.setTypeParser(types.builtins.DATE, (value) => value);
-        types.setTypeParser(types.builtins.INT8, (value) =>
+        pg.types.setTypeParser(pg.types.builtins.DATE, (value) => value);
+        pg.types.setTypeParser(pg.types.builtins.INT8, (value) =>
             parseInt(value, 10),
         );
-        this.pool = new Pool(config);
+        this.pool = new pg.Pool(config);
     }
 
-    public async executeQuery<T extends QueryResultRow>(
+    public async executeQuery<T extends pg.QueryResultRow>(
         statement: SqlLike,
-    ): Promise<QueryResult<T>> {
+    ): Promise<pg.QueryResult<T>> {
         let client = this.asyncLocalStorage.getStore();
         const shouldReleaseClient = client === undefined;
         if (!client) {
